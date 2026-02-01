@@ -1,36 +1,83 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Smart Image Compressor 🚀
 
-## Getting Started
+**Smart Image Compressor** adalah aplikasi web modern yang berfokus pada privasi dan kecepatan untuk mengompresi gambar dan mengelola file secara lokal di browser. Dibangun dengan **Next.js 15**, **TypeScript**, dan **Tailwind CSS**.
 
-First, run the development server:
+![Smart Compressor Preview](https://via.placeholder.com/800x400?text=Smart+Compressor+Preview)
+*(Anda dapat menambahkan screenshot aplikasi di sini)*
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## ✨ Fitur Utama
+
+- **🔒 Privacy-First (Client-Side Only)**: Semua proses kompresi dilakukan sepenuhnya di browser Anda. File **tidak pernah** diunggah ke server mana pun.
+- **🎯 Target File Size**: Tentukan ukuran maksimal yang diinginkan (contoh: 'Max 300KB'). Algoritma cerdas akan mencoba mengompres gambar agar sesuai dengan target tersebut.
+- **📂 Multi-Format Support**:
+    - **Images**: JPG, PNG, WEBP (Kompresi cerdas).
+    - **Documents**: PDF, Word (DOC/DOCX) (Optimasi dasar & pengarsipan).
+    - **Validasi Ketat**: Hanya file yang didukung yang dapat diproses.
+- **📦 Batch Processing**: Drag & drop banyak file sekaligus.
+- **💾 One-Click ZIP Download**: Unduh semua file yang telah diproses dalam satu file ZIP yang rapi.
+- **🎨 Modern UI**: Antarmuka Glassmorphism yang estetik, responsif (Mobile Friendly), dan mudah digunakan.
+
+## 🛠️ Tech Stack
+
+- **Framework**: [Next.js 15](https://nextjs.org/) (App Router)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/) + [Clsx](https://github.com/lukeed/clsx)
+- **Animations**: [Framer Motion](https://www.framer.com/motion/)
+- **Compression Logic**: `browser-image-compression`
+- **PDF Handling**: `pdf-lib`
+- **Archiving**: `jszip`
+- **Icons**: `lucide-react`
+
+## 🚀 Cara Menjalaankan Project
+
+Project ini berada di dalam folder `web`. Ikuti langkah berikut untuk menjalankannya di komputer lokal Anda:
+
+### Prasyarat
+Pastikan Anda sudah menginstal [Node.js](https://nodejs.org/) (v18 atau terbaru).
+
+### Instalasi
+
+1.  **Clone repository ini** (jika belum):
+    ```bash
+    git clone https://github.com/NXRts/FileKompres.git
+    cd FileKompres
+    ```
+
+2.  **Masuk ke direktori web**:
+    ```bash
+    cd web
+    ```
+
+3.  **Install dependencies**:
+    ```bash
+    npm install
+    ```
+
+4.  **Jalankan Development Server**:
+    ```bash
+    npm run dev
+    ```
+
+5.  **Buka Browser**:
+    Buka [http://localhost:3000](http://localhost:3000) untuk melihat aplikasi.
+
+## 📁 Struktur Project
+
+```
+KompresData/
+├── web/                  # Source code aplikasi Next.js
+│   ├── app/              # App Router (Pages & Layout)
+│   ├── components/       # Reusable AI Components
+│   │   ├── Compressor/   # Komponen utama (Dashboard, Settings, Table)
+│   │   └── ui/           # Komponen dasar (Button, Dropzone, Input)
+│   ├── lib/              # Logic & Utilities (Compressor service)
+│   └── ...
+└── README.md             # Dokumentasi Project
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🤝 Kontribusi
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Kontribusi sangat diterima! Silakan buat *Pull Request* atau laporkan *Issues* jika menemukan bug atau memiliki ide fitur baru.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+Dibuat dengan ❤️ oleh [NXRts].
