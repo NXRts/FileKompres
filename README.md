@@ -1,21 +1,21 @@
 # Smart Image Compressor 🚀
 
-**Smart Image Compressor** adalah aplikasi web modern yang berfokus pada privasi dan kecepatan untuk mengompresi gambar dan mengelola file secara lokal di browser. Dibangun dengan **Next.js 15**, **TypeScript**, dan **Tailwind CSS**.
+**Smart Image Compressor** is a modern, privacy-focused web application designed to compress images and manage files locally within your browser. Built with **Next.js 15**, **TypeScript**, and **Tailwind CSS**.
 
 ![Smart Compressor Preview](https://via.placeholder.com/800x400?text=Smart+Compressor+Preview)
-*(Anda dapat menambahkan screenshot aplikasi di sini)*
+*(You can add a screenshot of the application here)*
 
-## ✨ Fitur Utama
+## ✨ Key Features
 
-- **🔒 Privacy-First (Client-Side Only)**: Semua proses kompresi dilakukan sepenuhnya di browser Anda. File **tidak pernah** diunggah ke server mana pun.
-- **🎯 Target File Size**: Tentukan ukuran maksimal yang diinginkan (contoh: 'Max 300KB'). Algoritma cerdas akan mencoba mengompres gambar agar sesuai dengan target tersebut.
+- **🔒 Privacy-First (Client-Side Only)**: All compression processes happen entirely in your browser. Files are **never** uploaded to any server.
+- **🎯 Target File Size**: Specify your desired maximum size (e.g., 'Max 300KB'). The smart algorithm automatically adjusts compression to meet this target.
 - **📂 Multi-Format Support**:
-    - **Images**: JPG, PNG, WEBP (Kompresi cerdas).
-    - **Documents**: PDF, Word (DOC/DOCX) (Optimasi dasar & pengarsipan).
-    - **Validasi Ketat**: Hanya file yang didukung yang dapat diproses.
-- **📦 Batch Processing**: Drag & drop banyak file sekaligus.
-- **💾 One-Click ZIP Download**: Unduh semua file yang telah diproses dalam satu file ZIP yang rapi.
-- **🎨 Modern UI**: Antarmuka Glassmorphism yang estetik, responsif (Mobile Friendly), dan mudah digunakan.
+    - **Images**: JPG, PNG, WEBP (Smart compression).
+    - **Documents**: PDF, Word (DOC/DOCX) (Basic optimization & archiving).
+    - **Strict Validation**: Only supported files can be processed.
+- **📦 Batch Processing**: Drag & drop multiple files at once.
+- **💾 One-Click ZIP Download**: Download all processed files in a single, organized ZIP archive.
+- **🎨 Modern UI**: Aesthetic Glassmorphism design, responsive (Mobile Friendly), and easy to use.
 
 ## 🛠️ Tech Stack
 
@@ -28,22 +28,22 @@
 - **Archiving**: `jszip`
 - **Icons**: `lucide-react`
 
-## 🚀 Cara Menjalaankan Project
+## 🚀 How to Run
 
-Project ini berada di dalam folder `web`. Ikuti langkah berikut untuk menjalankannya di komputer lokal Anda:
+The project is located in the `web` directory. Follow these steps to run it on your local machine:
 
-### Prasyarat
-Pastikan Anda sudah menginstal [Node.js](https://nodejs.org/) (v18 atau terbaru).
+### Prerequisites
+Make sure you have [Node.js](https://nodejs.org/) (v18 or later) installed.
 
-### Instalasi
+### Installation
 
-1.  **Clone repository ini** (jika belum):
+1.  **Clone this repository** (if you haven't already):
     ```bash
     git clone https://github.com/NXRts/FileKompres.git
     cd FileKompres
     ```
 
-2.  **Masuk ke direktori web**:
+2.  **Navigate to the web directory**:
     ```bash
     cd web
     ```
@@ -53,31 +53,31 @@ Pastikan Anda sudah menginstal [Node.js](https://nodejs.org/) (v18 atau terbaru)
     npm install
     ```
 
-4.  **Jalankan Development Server**:
+4.  **Run Development Server**:
     ```bash
     npm run dev
     ```
 
-5.  **Buka Browser**:
-    Buka [http://localhost:3000](http://localhost:3000) untuk melihat aplikasi.
+5.  **Open Browser**:
+    Open [http://localhost:3000](http://localhost:3000) to view the application.
 
-## 📁 Struktur Project
+## 📁 Project Structure
 
 ```
 KompresData/
-├── web/                  # Source code aplikasi Next.js
+├── web/                  # Next.js Source Code
 │   ├── app/              # App Router (Pages & Layout)
-│   ├── components/       # Reusable AI Components
-│   │   ├── Compressor/   # Komponen utama (Dashboard, Settings, Table)
-│   │   └── ui/           # Komponen dasar (Button, Dropzone, Input)
+│   ├── components/       # Reusable UI Components
+│   │   ├── Compressor/   # Core Components (Dashboard, Settings, Table)
+│   │   └── ui/           # Basic UI Components (Button, Dropzone, Input)
 │   ├── lib/              # Logic & Utilities (Compressor service)
 │   └── ...
-└── README.md             # Dokumentasi Project
+└── README.md             # Project Documentation
 ```
 
-## 🤝 Kontribusi
+## 🤝 Contribution
 
-Kontribusi sangat diterima! Silakan buat *Pull Request* atau laporkan *Issues* jika menemukan bug atau memiliki ide fitur baru.
+Contributions are welcome! Please feel free to open a *Pull Request* or report *Issues* if you find bugs or have ideas for new features.
 
 ---
-Dibuat dengan ❤️ oleh [NXRts].
+Made with ❤️ by [NXRts].
