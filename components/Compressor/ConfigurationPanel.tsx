@@ -44,19 +44,27 @@ export function ConfigurationPanel({
                             className="font-mono text-center text-base md:text-lg h-10 md:h-12"
                         />
                     </div>
-                    <div className="relative">
-                        <select
-                            value={unit}
-                            onChange={(e) => setUnit(e.target.value as 'KB' | 'MB')}
+                    <div className="flex bg-zinc-800 p-1 rounded-lg border border-zinc-700 h-10 md:h-12 items-center">
+                        <button
+                            onClick={() => setUnit('KB')}
                             disabled={disabled}
-                            className="h-10 md:h-12 bg-zinc-800 border-zinc-700 text-zinc-100 text-sm rounded-lg border focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-pointer hover:bg-zinc-700/80 transition-colors appearance-none pr-8"
+                            className={`px-3 md:px-4 h-full rounded-md text-xs md:text-sm font-medium transition-all ${unit === 'KB'
+                                    ? 'bg-zinc-600 text-white shadow-sm'
+                                    : 'text-zinc-400 hover:text-zinc-200'
+                                }`}
                         >
-                            <option value="KB">KB</option>
-                            <option value="MB">MB</option>
-                        </select>
-                        <svg className="w-3 h-3 absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none text-zinc-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4" />
-                        </svg>
+                            KB
+                        </button>
+                        <button
+                            onClick={() => setUnit('MB')}
+                            disabled={disabled}
+                            className={`px-3 md:px-4 h-full rounded-md text-xs md:text-sm font-medium transition-all ${unit === 'MB'
+                                    ? 'bg-blue-600 text-white shadow-sm'
+                                    : 'text-zinc-400 hover:text-zinc-200'
+                                }`}
+                        >
+                            MB
+                        </button>
                     </div>
                 </div>
             </div>
