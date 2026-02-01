@@ -10,6 +10,7 @@ export interface ConfigurationPanelProps {
     unit: 'KB' | 'MB';
     setUnit: (value: 'KB' | 'MB') => void;
     disabled?: boolean;
+    isInvalid?: boolean;
 }
 
 export function ConfigurationPanel({
@@ -18,6 +19,7 @@ export function ConfigurationPanel({
     unit,
     setUnit,
     disabled,
+    isInvalid = false,
 }: ConfigurationPanelProps) {
     return (
         <div className="bg-zinc-900/50 border border-zinc-800 rounded-2xl p-4 md:p-6 flex flex-col md:flex-row items-center gap-4 md:gap-6 justify-between backdrop-blur-sm">
@@ -72,7 +74,7 @@ export function ConfigurationPanel({
                                     }
                                 }}
                                 disabled={disabled}
-                                className={`font-mono text-center text-base md:text-lg h-10 md:h-12 ${targetSize === 0 ? "border-red-500 ring-1 ring-red-500/50" : ""}`}
+                                className={`font-mono text-center text-base md:text-lg h-10 md:h-12 ${isInvalid ? "border-red-500 ring-1 ring-red-500/50" : ""}`}
                             />
                         </div>
                         <div className="flex bg-zinc-800 p-1 rounded-lg border border-zinc-700 h-10 md:h-12 items-center">
@@ -98,9 +100,9 @@ export function ConfigurationPanel({
                             </button>
                         </div>
                     </div>
-                    {targetSize === 0 && (
-                        <span className="text-[10px] md:text-xs text-red-400 font-medium absolute top-full mt-1 right-0 bg-red-950/80 px-2 py-0.5 rounded border border-red-500/30">
-                            ⚠️ Size cannot be 0
+                    {isInvalid && (
+                        <span className="text-[10px] md:text-xs text-red-400 font-medium absolute top-full mt-1 right-0 bg-red-950/80 px-2 py-0.5 rounded border border-red-500/30 whitespace-nowrap z-10">
+                            ⚠️ Min size is 50KB
                         </span>
                     )}
                 </div>

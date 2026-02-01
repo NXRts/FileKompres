@@ -101,7 +101,7 @@ export function FileTable({ files, onRemove, onDownload, isInvalidConfig }: File
                                             {isInvalidConfig && (
                                                 <div className="absolute bottom-full mb-2 right-0 hidden group-hover/btn:block whitespace-nowrap z-10">
                                                     <div className="bg-red-500 text-white text-xs px-2 py-1 rounded shadow-lg">
-                                                        Size cannot be 0
+                                                        Min size is 50KB
                                                         <div className="absolute top-full right-4 -mt-1 border-4 border-transparent border-t-red-500"></div>
                                                     </div>
                                                 </div>

@@ -125,6 +125,11 @@ export default function Dashboard() {
         }
     };
 
+    // Validation Logic: Min 50KB
+    // If unit is KB, min is 50.
+    // If unit is MB, min is 50/1024 approx 0.0488.. let's say 0.05MB to be safe/clean.
+    const isInvalidConfig = unit === 'KB' ? targetSize < 50 : targetSize < 0.05;
+
     return (
         <div className="max-w-4xl mx-auto space-y-8">
             <div className="space-y-2 text-center">
@@ -142,12 +147,13 @@ export default function Dashboard() {
                 unit={unit}
                 setUnit={handleUnitChange}
                 disabled={isGlobalProcessing || files.some(f => f.status === 'processing')}
+                isInvalid={isInvalidConfig}
             />
 
             <Dropzone
                 onFilesDropped={handleFilesDropped}
                 isProcessing={isGlobalProcessing}
-                disabled={targetSize === 0}
+                disabled={isInvalidConfig}
             />
 
             <div className="flex justify-end gap-3 min-h-[40px]">
@@ -167,15 +173,15 @@ export default function Dashboard() {
                         <Button
                             variant="primary"
                             onClick={handleDownloadAll}
-                            disabled={targetSize === 0}
+                            disabled={isInvalidConfig}
                             className="bg-zinc-100 text-zinc-900 hover:bg-white disabled:opacity-50 disabled:cursor-not-allowed"
                         >
                             <DownloadCloud className="h-4 w-4 mr-2" /> Download All as ZIP
                         </Button>
-                        {targetSize === 0 && (
+                        {isInvalidConfig && (
                             <div className="absolute bottom-full mb-2 right-0 hidden group-hover:block whitespace-nowrap z-10">
                                 <div className="bg-red-500 text-white text-xs px-2 py-1 rounded shadow-lg">
-                                    Size cannot be 0
+                                    Min size is 50KB
                                     <div className="absolute top-full right-4 -mt-1 border-4 border-transparent border-t-red-500"></div>
                                 </div>
                             </div>
@@ -188,7 +194,7 @@ export default function Dashboard() {
                 files={files}
                 onRemove={(id) => setFiles(prev => prev.filter(f => f.id !== id))}
                 onDownload={handleDownload}
-                isInvalidConfig={targetSize === 0}
+                isInvalidConfig={isInvalidConfig}
             />
         </div>
     );
