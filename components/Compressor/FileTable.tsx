@@ -88,15 +88,25 @@ export function FileTable({ files, onRemove, onDownload, isInvalidConfig }: File
                                         </span>
                                     )}
                                     {item.status === 'done' && (
-                                        <Button
-                                            size="sm"
-                                            variant="primary"
-                                            className="h-7 md:h-8 text-xs bg-blue-600/20 text-blue-400 hover:bg-blue-600 hover:text-white border-0 shadow-none px-2 md:px-3 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-blue-600/20 disabled:hover:text-blue-400"
-                                            onClick={() => item.compressedFile && onDownload(item.compressedFile)}
-                                            disabled={isInvalidConfig}
-                                        >
-                                            <Download className="h-3 w-3 mr-1.5" /> Save
-                                        </Button>
+                                        <div className="relative group/btn">
+                                            <Button
+                                                size="sm"
+                                                variant="primary"
+                                                className="h-7 md:h-8 text-xs bg-blue-600/20 text-blue-400 hover:bg-blue-600 hover:text-white border-0 shadow-none px-2 md:px-3 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-blue-600/20 disabled:hover:text-blue-400"
+                                                onClick={() => item.compressedFile && onDownload(item.compressedFile)}
+                                                disabled={isInvalidConfig}
+                                            >
+                                                <Download className="h-3 w-3 mr-1.5" /> Save
+                                            </Button>
+                                            {isInvalidConfig && (
+                                                <div className="absolute bottom-full mb-2 right-0 hidden group-hover/btn:block whitespace-nowrap z-10">
+                                                    <div className="bg-red-500 text-white text-xs px-2 py-1 rounded shadow-lg">
+                                                        Size cannot be 0
+                                                        <div className="absolute top-full right-4 -mt-1 border-4 border-transparent border-t-red-500"></div>
+                                                    </div>
+                                                </div>
+                                            )}
+                                        </div>
                                     )}
                                     {item.status === 'error' && (
                                         <span className="flex items-center gap-2 text-[10px] md:text-xs text-red-400 bg-red-400/10 px-2 py-1 rounded-full">

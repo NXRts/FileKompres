@@ -163,14 +163,24 @@ export default function Dashboard() {
                     </Button>
                 )}
                 {completedCount > 1 && (
-                    <Button
-                        variant="primary"
-                        onClick={handleDownloadAll}
-                        disabled={targetSize === 0} // Also disable batch download if config is invalid (although technically these files are already done)
-                        className="bg-zinc-100 text-zinc-900 hover:bg-white disabled:opacity-50 disabled:cursor-not-allowed"
-                    >
-                        <DownloadCloud className="h-4 w-4 mr-2" /> Download All as ZIP
-                    </Button>
+                    <div className="relative group">
+                        <Button
+                            variant="primary"
+                            onClick={handleDownloadAll}
+                            disabled={targetSize === 0}
+                            className="bg-zinc-100 text-zinc-900 hover:bg-white disabled:opacity-50 disabled:cursor-not-allowed"
+                        >
+                            <DownloadCloud className="h-4 w-4 mr-2" /> Download All as ZIP
+                        </Button>
+                        {targetSize === 0 && (
+                            <div className="absolute bottom-full mb-2 right-0 hidden group-hover:block whitespace-nowrap z-10">
+                                <div className="bg-red-500 text-white text-xs px-2 py-1 rounded shadow-lg">
+                                    Size cannot be 0
+                                    <div className="absolute top-full right-4 -mt-1 border-4 border-transparent border-t-red-500"></div>
+                                </div>
+                            </div>
+                        )}
+                    </div>
                 )}
             </div>
 
