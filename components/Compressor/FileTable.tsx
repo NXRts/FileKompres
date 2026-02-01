@@ -19,9 +19,10 @@ interface FileTableProps {
     files: FileItem[];
     onRemove: (id: string) => void;
     onDownload: (file: File) => void;
+    isInvalidConfig?: boolean;
 }
 
-export function FileTable({ files, onRemove, onDownload }: FileTableProps) {
+export function FileTable({ files, onRemove, onDownload, isInvalidConfig }: FileTableProps) {
     if (files.length === 0) return null;
 
     return (
@@ -90,8 +91,9 @@ export function FileTable({ files, onRemove, onDownload }: FileTableProps) {
                                         <Button
                                             size="sm"
                                             variant="primary"
-                                            className="h-7 md:h-8 text-xs bg-blue-600/20 text-blue-400 hover:bg-blue-600 hover:text-white border-0 shadow-none px-2 md:px-3"
+                                            className="h-7 md:h-8 text-xs bg-blue-600/20 text-blue-400 hover:bg-blue-600 hover:text-white border-0 shadow-none px-2 md:px-3 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-blue-600/20 disabled:hover:text-blue-400"
                                             onClick={() => item.compressedFile && onDownload(item.compressedFile)}
+                                            disabled={isInvalidConfig}
                                         >
                                             <Download className="h-3 w-3 mr-1.5" /> Save
                                         </Button>

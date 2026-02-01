@@ -144,7 +144,11 @@ export default function Dashboard() {
                 disabled={isGlobalProcessing || files.some(f => f.status === 'processing')}
             />
 
-            <Dropzone onFilesDropped={handleFilesDropped} isProcessing={isGlobalProcessing} />
+            <Dropzone
+                onFilesDropped={handleFilesDropped}
+                isProcessing={isGlobalProcessing}
+                disabled={targetSize === 0}
+            />
 
             <div className="flex justify-end gap-3 min-h-[40px]">
                 {files.length > 0 && (
@@ -162,7 +166,8 @@ export default function Dashboard() {
                     <Button
                         variant="primary"
                         onClick={handleDownloadAll}
-                        className="bg-zinc-100 text-zinc-900 hover:bg-white"
+                        disabled={targetSize === 0} // Also disable batch download if config is invalid (although technically these files are already done)
+                        className="bg-zinc-100 text-zinc-900 hover:bg-white disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                         <DownloadCloud className="h-4 w-4 mr-2" /> Download All as ZIP
                     </Button>
@@ -173,6 +178,7 @@ export default function Dashboard() {
                 files={files}
                 onRemove={(id) => setFiles(prev => prev.filter(f => f.id !== id))}
                 onDownload={handleDownload}
+                isInvalidConfig={targetSize === 0}
             />
         </div>
     );

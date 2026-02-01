@@ -9,9 +9,10 @@ import { cn } from "@/lib/utils";
 interface DropzoneProps {
     onFilesDropped: (files: File[]) => void;
     isProcessing: boolean;
+    disabled?: boolean;
 }
 
-export function Dropzone({ onFilesDropped, isProcessing }: DropzoneProps) {
+export function Dropzone({ onFilesDropped, isProcessing, disabled }: DropzoneProps) {
     const [error, setError] = React.useState<string | null>(null);
 
     const onDrop = useCallback(
@@ -36,7 +37,7 @@ export function Dropzone({ onFilesDropped, isProcessing }: DropzoneProps) {
 
     const { getRootProps, getInputProps, isDragActive } = useDropzone({
         onDrop,
-        disabled: isProcessing,
+        disabled: isProcessing || disabled,
         accept: {
             'image/jpeg': ['.jpg', '.jpeg'],
             'image/png': ['.png'],
