@@ -115,10 +115,10 @@ export default function Dashboard() {
     return (
         <div className="max-w-4xl mx-auto space-y-8">
             <div className="space-y-2 text-center">
-                <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-white">
+                <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight text-white">
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-violet-400">Smart</span> Compressor
                 </h1>
-                <p className="text-zinc-400 text-lg max-w-2xl mx-auto">
+                <p className="text-zinc-400 text-sm md:text-lg max-w-2xl mx-auto px-4">
                     Secure, private, and client-side only. Compress images to a specific size, optimize PDFs, and batch process everything in seconds.
                 </p>
             </div>
