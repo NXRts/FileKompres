@@ -25,7 +25,8 @@ interface FileItem {
 
 export default function Dashboard() {
     const [files, setFiles] = useState<FileItem[]>([]);
-    const [targetSizeKB, setTargetSizeKB] = useState(300);
+    const [targetSize, setTargetSize] = useState(300);
+    const [unit, setUnit] = useState<'KB' | 'MB'>('KB');
     const [isGlobalProcessing, setIsGlobalProcessing] = useState(false);
 
     const handleFilesDropped = async (droppedFiles: File[]) => {
@@ -46,6 +47,9 @@ export default function Dashboard() {
     const processFilesQueue = async (queue: FileItem[]) => {
         setIsGlobalProcessing(true);
 
+        // Convert target size to KB for the internal logic
+        const effectiveTargetSizeKB = unit === 'MB' ? targetSize * 1024 : targetSize;
+
         for (const item of queue) {
             setFiles((prev) => prev.map(f => f.id === item.id ? { ...f, status: 'processing' } : f));
 
@@ -54,7 +58,7 @@ export default function Dashboard() {
 
             try {
                 // Process
-                const result = await processFile(item.file, targetSizeKB);
+                const result = await processFile(item.file, effectiveTargetSizeKB);
 
                 setFiles((prev) => prev.map(f => f.id === item.id ? {
                     ...f,
@@ -124,8 +128,10 @@ export default function Dashboard() {
             </div>
 
             <ConfigurationPanel
-                targetSizeKB={targetSizeKB}
-                setTargetSizeKB={setTargetSizeKB}
+                targetSize={targetSize}
+                setTargetSize={setTargetSize}
+                unit={unit}
+                setUnit={setUnit}
                 disabled={isGlobalProcessing || files.some(f => f.status === 'processing')}
             />
 
