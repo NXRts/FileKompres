@@ -36,27 +36,39 @@ export function ConfigurationPanel({
                 <div className="relative flex items-center gap-2">
                     <div className="relative w-24 md:w-28">
                         <Input
-                            type="number"
+                            type={unit === 'KB' ? "text" : "number"}
+                            inputMode={unit === 'KB' ? "numeric" : "decimal"}
                             min={1}
                             max={unit === 'MB' ? 100 : 50000}
-                            value={targetSize}
+                            value={unit === 'KB' ? targetSize.toLocaleString('en-US') : targetSize}
                             onChange={(e) => {
-                                let val = e.target.value;
-                                if (val.length > 5) return; // Limit char length
+                                const rawValue = e.target.value;
 
-                                const numVal = Number(val);
-                                if (numVal < 0) return;
+                                if (unit === 'KB') {
+                                    // Remove commas for processing
+                                    const cleanVal = rawValue.replace(/,/g, '');
 
-                                // Optional: Cap the value directly? 
-                                // Let's just trust the user not to type infinity, but the char limit helps.
-                                // Or better, let's clamp it if it's too huge on blur, but while typing just limit chars.
-                                // 5 chars for KB = 99999KB (~100MB), 5 chars for MB = 99999MB (too big).
+                                    // Allow empty for better UX while typing (will default to min upstream or handle gracefully)
+                                    if (cleanVal === '') {
+                                        setTargetSize(0);
+                                        return;
+                                    }
 
-                                // Strict logic:
-                                if (unit === 'MB' && numVal > 100) return; // Max 100MB
-                                if (unit === 'KB' && numVal > 50000) return; // Max 50MB
+                                    if (!/^\d+$/.test(cleanVal)) return; // Integers only for KB
+                                    if (cleanVal.length > 5) return;
 
-                                setTargetSize(numVal);
+                                    const numVal = Number(cleanVal);
+                                    if (numVal > 50000) return;
+
+                                    setTargetSize(numVal);
+                                } else {
+                                    // MB Logic (Standard)
+                                    if (rawValue.length > 5) return;
+                                    const numVal = Number(rawValue);
+                                    if (numVal < 0) return;
+                                    if (numVal > 100) return;
+                                    setTargetSize(numVal);
+                                }
                             }}
                             disabled={disabled}
                             className="font-mono text-center text-base md:text-lg h-10 md:h-12"
