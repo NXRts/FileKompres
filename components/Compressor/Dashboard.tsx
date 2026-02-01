@@ -116,6 +116,15 @@ export default function Dashboard() {
 
     const completedCount = files.filter(f => f.status === 'done').length;
 
+    const handleUnitChange = (newUnit: 'KB' | 'MB') => {
+        setUnit(newUnit);
+        if (newUnit === 'MB') {
+            setTargetSize(2);
+        } else {
+            setTargetSize(300);
+        }
+    };
+
     return (
         <div className="max-w-4xl mx-auto space-y-8">
             <div className="space-y-2 text-center">
@@ -131,7 +140,7 @@ export default function Dashboard() {
                 targetSize={targetSize}
                 setTargetSize={setTargetSize}
                 unit={unit}
-                setUnit={setUnit}
+                setUnit={handleUnitChange}
                 disabled={isGlobalProcessing || files.some(f => f.status === 'processing')}
             />
 
