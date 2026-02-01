@@ -33,69 +33,76 @@ export function ConfigurationPanel({
 
             <div className="flex items-center gap-3 w-full md:w-auto justify-between md:justify-start">
                 <span className="text-sm font-medium text-zinc-300 whitespace-nowrap">Max Size:</span>
-                <div className="relative flex items-center gap-2">
-                    <div className="relative w-24 md:w-28">
-                        <Input
-                            type={unit === 'KB' ? "text" : "number"}
-                            inputMode={unit === 'KB' ? "numeric" : "decimal"}
-                            min={1}
-                            max={unit === 'MB' ? 100 : 50000}
-                            value={unit === 'KB' ? targetSize.toLocaleString('en-US') : targetSize}
-                            onChange={(e) => {
-                                const rawValue = e.target.value;
+                <div className="relative flex flex-col items-end gap-1">
+                    <div className="flex items-center gap-2">
+                        <div className="relative w-24 md:w-28">
+                            <Input
+                                type={unit === 'KB' ? "text" : "number"}
+                                inputMode={unit === 'KB' ? "numeric" : "decimal"}
+                                min={0}
+                                max={unit === 'MB' ? 100 : 50000}
+                                value={unit === 'KB' ? targetSize.toLocaleString('en-US') : targetSize}
+                                onChange={(e) => {
+                                    const rawValue = e.target.value;
 
-                                if (unit === 'KB') {
-                                    // Remove commas for processing
-                                    const cleanVal = rawValue.replace(/,/g, '');
+                                    if (unit === 'KB') {
+                                        // Remove commas for processing
+                                        const cleanVal = rawValue.replace(/,/g, '');
 
-                                    // Allow empty for better UX while typing (will default to min upstream or handle gracefully)
-                                    if (cleanVal === '') {
-                                        setTargetSize(0);
-                                        return;
+                                        // Allow empty for better UX while typing (will default to min upstream or handle gracefully)
+                                        if (cleanVal === '') {
+                                            setTargetSize(0);
+                                            return;
+                                        }
+
+                                        if (!/^\d+$/.test(cleanVal)) return; // Integers only for KB
+                                        if (cleanVal.length > 5) return;
+
+                                        const numVal = Number(cleanVal);
+                                        if (numVal > 50000) return;
+
+                                        setTargetSize(numVal);
+                                    } else {
+                                        // MB Logic (Standard)
+                                        if (rawValue.length > 5) return;
+                                        const numVal = Number(rawValue);
+                                        if (numVal < 0) return;
+                                        if (numVal > 100) return;
+                                        setTargetSize(numVal);
                                     }
-
-                                    if (!/^\d+$/.test(cleanVal)) return; // Integers only for KB
-                                    if (cleanVal.length > 5) return;
-
-                                    const numVal = Number(cleanVal);
-                                    if (numVal > 50000) return;
-
-                                    setTargetSize(numVal);
-                                } else {
-                                    // MB Logic (Standard)
-                                    if (rawValue.length > 5) return;
-                                    const numVal = Number(rawValue);
-                                    if (numVal < 0) return;
-                                    if (numVal > 100) return;
-                                    setTargetSize(numVal);
-                                }
-                            }}
-                            disabled={disabled}
-                            className="font-mono text-center text-base md:text-lg h-10 md:h-12"
-                        />
+                                }}
+                                disabled={disabled}
+                                className={`font-mono text-center text-base md:text-lg h-10 md:h-12 ${targetSize === 0 ? "border-red-500 ring-1 ring-red-500/50" : ""}`}
+                            />
+                        </div>
+                        <div className="flex bg-zinc-800 p-1 rounded-lg border border-zinc-700 h-10 md:h-12 items-center">
+                            <button
+                                onClick={() => setUnit('KB')}
+                                disabled={disabled}
+                                className={`px-3 md:px-4 h-full rounded-md text-xs md:text-sm font-medium transition-all ${unit === 'KB'
+                                    ? 'bg-zinc-600 text-white shadow-sm'
+                                    : 'text-zinc-400 hover:text-zinc-200'
+                                    }`}
+                            >
+                                KB
+                            </button>
+                            <button
+                                onClick={() => setUnit('MB')}
+                                disabled={disabled}
+                                className={`px-3 md:px-4 h-full rounded-md text-xs md:text-sm font-medium transition-all ${unit === 'MB'
+                                    ? 'bg-blue-600 text-white shadow-sm'
+                                    : 'text-zinc-400 hover:text-zinc-200'
+                                    }`}
+                            >
+                                MB
+                            </button>
+                        </div>
                     </div>
-                    <div className="flex bg-zinc-800 p-1 rounded-lg border border-zinc-700 h-10 md:h-12 items-center">
-                        <button
-                            onClick={() => setUnit('KB')}
-                            disabled={disabled}
-                            className={`px-3 md:px-4 h-full rounded-md text-xs md:text-sm font-medium transition-all ${unit === 'KB'
-                                ? 'bg-zinc-600 text-white shadow-sm'
-                                : 'text-zinc-400 hover:text-zinc-200'
-                                }`}
-                        >
-                            KB
-                        </button>
-                        <button
-                            onClick={() => setUnit('MB')}
-                            disabled={disabled}
-                            className={`px-3 md:px-4 h-full rounded-md text-xs md:text-sm font-medium transition-all ${unit === 'MB'
-                                ? 'bg-blue-600 text-white shadow-sm'
-                                : 'text-zinc-400 hover:text-zinc-200'
-                                }`}
-                        >
-                            MB
-                        </button>
-                    </div>
+                    {targetSize === 0 && (
+                        <span className="text-[10px] md:text-xs text-red-400 font-medium absolute top-full mt-1 right-0 bg-red-950/80 px-2 py-0.5 rounded border border-red-500/30">
+                            ⚠️ Size cannot be 0
+                        </span>
+                    )}
                 </div>
             </div>
         </div>
