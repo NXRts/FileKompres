@@ -27,7 +27,7 @@ export function Footer() {
                         </p>
                         <div className="flex items-center gap-4 pt-2">
                             <Link
-                                href="https://github.com"
+                                href="https://github.com/NXRts/FileKompres"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="text-zinc-500 hover:text-white transition-colors"
@@ -85,7 +85,7 @@ export function Footer() {
                 <div className="pt-8 border-t border-zinc-900 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-zinc-500">
                     <p>© {currentYear} Smart Compressor. All rights reserved.</p>
                     <div className="flex items-center gap-1">
-                        Build with <Heart className="h-3 w-3 text-rose-500 fill-rose-500 mx-0.5" /> by <span className="text-zinc-300 font-medium">NXRts</span>
+                        Build with <Heart className="h-3 w-3 text-rose-500 fill-rose-500 mx-0.5" /> by <span className="text-zinc-300 font-medium"><a href="https://github.com/NXRts">NXRts</a></span>
                     </div>
                     <div className="flex gap-6">
                         <Link href="/terms" className="hover:text-zinc-300 transition-colors">Terms</Link>
