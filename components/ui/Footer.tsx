@@ -51,13 +51,13 @@ export function Footer() {
                         </h3>
                         <ul className="space-y-3 text-sm">
                             <li>
-                                <Link href="#" className="text-zinc-400 hover:text-blue-400 transition-colors">Cara Kerja</Link>
+                                <Link href="/how-it-works" className="text-zinc-400 hover:text-blue-400 transition-colors">Cara Kerja</Link>
                             </li>
                             <li>
-                                <Link href="#" className="text-zinc-400 hover:text-blue-400 transition-colors">Privasi</Link>
+                                <Link href="/privacy" className="text-zinc-400 hover:text-blue-400 transition-colors">Privasi</Link>
                             </li>
                             <li>
-                                <Link href="#" className="text-zinc-400 hover:text-blue-400 transition-colors">Keamanan</Link>
+                                <Link href="/security" className="text-zinc-400 hover:text-blue-400 transition-colors">Keamanan</Link>
                             </li>
                         </ul>
                     </div>
@@ -69,13 +69,13 @@ export function Footer() {
                         </h3>
                         <ul className="space-y-3 text-sm">
                             <li>
-                                <Link href="#" className="text-zinc-400 hover:text-blue-400 transition-colors">FAQ</Link>
+                                <Link href="/faq" className="text-zinc-400 hover:text-blue-400 transition-colors">FAQ</Link>
                             </li>
                             <li>
-                                <Link href="#" className="text-zinc-400 hover:text-blue-400 transition-colors">Kontak</Link>
+                                <Link href="/contact" className="text-zinc-400 hover:text-blue-400 transition-colors">Kontak</Link>
                             </li>
                             <li>
-                                <Link href="#" className="text-zinc-400 hover:text-blue-400 transition-colors">Saran Fitur</Link>
+                                <Link href="/features" className="text-zinc-400 hover:text-blue-400 transition-colors">Saran Fitur</Link>
                             </li>
                         </ul>
                     </div>
@@ -88,9 +88,9 @@ export function Footer() {
                         Build with <Heart className="h-3 w-3 text-rose-500 fill-rose-500 mx-0.5" /> by <span className="text-zinc-300 font-medium">NXRts</span>
                     </div>
                     <div className="flex gap-6">
-                        <Link href="#" className="hover:text-zinc-300 transition-colors">Terms</Link>
-                        <Link href="#" className="hover:text-zinc-300 transition-colors">Privacy</Link>
-                        <Link href="#" className="hover:text-zinc-300 transition-colors">Cookies</Link>
+                        <Link href="/terms" className="hover:text-zinc-300 transition-colors">Terms</Link>
+                        <Link href="/privacy" className="hover:text-zinc-300 transition-colors">Privacy</Link>
+                        <Link href="/cookies" className="hover:text-zinc-300 transition-colors">Cookies</Link>
                     </div>
                 </div>
             </div>
