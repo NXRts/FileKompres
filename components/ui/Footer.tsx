@@ -35,7 +35,7 @@ export function Footer() {
                                 <Github className="h-5 w-5" />
                             </Link>
                             <Link
-                                href="#"
+                                href="https://yusufarr.vercel.app/"
                                 className="text-zinc-500 hover:text-white transition-colors"
                             >
                                 <Globe className="h-5 w-5" />
